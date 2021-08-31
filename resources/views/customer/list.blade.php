@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('myLayout.app')
 
 @section('content')
 <div class="row">
@@ -43,6 +43,11 @@
                 @endforeach
             </tbody>
         </table>
+
+            {{
+                $customer->links();
+            }}
+
         <a href="{{route('customer#register')}}"><button class="btn bg-primary text-white float-end">Back</button></a>
     </div>
 </div>

@@ -23,6 +23,16 @@ class CustomerController extends Controller
             'gender' => 'required',
             'dateOfBirth' => 'required',
             'phoneNumber' => 'required',
+        ] , [
+            'name.required' => 'Please Fill.....name',
+           /*  'name.max' => 'Max 5' , */
+            'email.required' => 'Please Fill.....email',
+            'address.required' => 'Please Fill.....address',
+            'gender.required' => 'Please Fill.....gender',
+            'dateOfBirth.required' => 'Please Fill.....date of birth',
+            'phoneNumber.required' => 'Please Fill.....phone number',
+
+
         ]);
 
         if ($validator->fails()) {
@@ -41,7 +51,9 @@ class CustomerController extends Controller
     }
     //cust list page
     public function list() {
-        $data = Customer::get() ;
+        // $data = Customer::get() ;
+        //Pagination
+        $data = Customer::paginate(5);
         return view('customer.list')->with(['customer' =>$data]);
     }
     //Cust info Seemore
@@ -72,6 +84,16 @@ class CustomerController extends Controller
             'gender' => 'required',
             'dateOfBirth' => 'required',
             'phoneNumber' => 'required',
+        ] , [
+            'name.required' => 'Please Fill.....name',
+           /*  'name.max' => 'Max 5' , */
+            'email.required' => 'Please Fill.....email',
+            'address.required' => 'Please Fill.....address',
+            'gender.required' => 'Please Fill.....gender',
+            'dateOfBirth.required' => 'Please Fill.....date of birth',
+            'phoneNumber.required' => 'Please Fill.....phone number',
+
+
         ]);
 
         if ($validator->fails()) {
@@ -89,7 +111,6 @@ class CustomerController extends Controller
     //Comfirm page
     public function comfirm() {
 
-        
         return view('customer.comfirm')->with(['customer' => Session::get('CUSTOMER_DATA')]);
     }
 
@@ -98,7 +119,7 @@ class CustomerController extends Controller
         $id = $data['id'] ;
         unset($data['id']); //remove data in id
         Session::forget('CUSTOMER_DATA') ;
-        dd($data);
+        // dd($data);
         Customer::where('customer_id' , $id)->update($data) ;
         return redirect()->route('customer#list')->with(['updateSuccess' => 'Update Success....']);
 

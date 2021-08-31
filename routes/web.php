@@ -18,3 +18,7 @@ Route::group(['prefix' => "customer"] , function () {
     Route::get('comfirm' , 'CustomerController@comfirm')->name('customer#comfirm') ;
     Route::get('realUpdate' , 'CustomerController@realUpdate')->name('customer#realUpdate') ;
 });
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
